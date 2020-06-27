@@ -69,7 +69,7 @@ duplicates = []  # Return the list of duplicates in this data structure
 
 
 #not sure if I can use a tuple so here's another solution
-# this is O(2n) but simplified to O(n*log(n)) but doesn't work for some reason
+# this is O(2n*log(n)) but simplified to O(n*log(n)) 
 
 bst = BSTNode(names_1[0])
 
