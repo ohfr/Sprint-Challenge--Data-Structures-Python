@@ -9,11 +9,6 @@ class BSTNode:
         self.value = value
         self.left = None
         self.right = None
-        self.count = 0
-    
-    def __len__(self):
-        return self.count
-
     
     def contains(self, target):
         if target == self.value:
@@ -31,7 +26,6 @@ class BSTNode:
                  return False
 
     def insert(self, value):
-        self.count +=1
         if value < self.value:
             if self.left:
                 return self.left.insert(value)
@@ -43,12 +37,6 @@ class BSTNode:
             else:
                 self.right = BSTNode(value)
 
-    def forEach(self):
-        print(self.value)
-        if self.left:
-            self.lef.forEach()
-        if self.right:
-            self.right.forEach()
 
 
 
@@ -81,16 +69,12 @@ duplicates = []  # Return the list of duplicates in this data structure
 
 
 #not sure if I can use a tuple so here's another solution
-# this is O(2n) but simplified to O(n)
+# this is O(2n) but simplified to O(n*log(n)) but doesn't work for some reason
+
 bst = BSTNode(names_1[0])
 
-bst.forEach()
-
-for name in names_1:
-    if name != names_1[0]:
-        bst.insert(name)
-        bst.forEach()
-        
+for i in range(1,len(names_1)):
+    bst.insert(names_1[i])
 
 for name2 in names_2:
     if bst.contains(name2):
@@ -98,6 +82,12 @@ for name2 in names_2:
 
 
 
+# This runtime is O(n) because one loop
+# firstNames = tuple(names_1)
+
+# for name in names_2:
+#     if name in firstNames:
+#         duplicates.append(name)
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
 print (f"runtime: {end_time - start_time} seconds")
